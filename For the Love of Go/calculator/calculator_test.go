@@ -2,6 +2,7 @@ package calculator_test
 
 import (
 	"calculator"
+	"math"
 	"testing"
 )
 
@@ -69,6 +70,10 @@ func TestMultiply(t *testing.T) {
 	}
 }
 
+func closeEnough(a, b, tolerance float64) bool {
+	return math.Abs(a-b) <= tolerance
+}
+
 func TestDivide(t *testing.T) {
 	t.Parallel()
 	type testCase struct {
@@ -79,6 +84,7 @@ func TestDivide(t *testing.T) {
 		{a: 2, b: 2, want: 1},
 		{a: -1, b: -1, want: 1},
 		{a: 10, b: 5, want: 2},
+		{a: 1, b: 3, want: 0.3333},
 	}
 
 	for _, tc := range testCases {
@@ -86,7 +92,7 @@ func TestDivide(t *testing.T) {
 		if err != nil {
 			t.Fatalf("want no error for vaild input, got %v", err)
 		}
-		if tc.want != got {
+		if !closeEnough(tc.want, got, 0.001) {
 			t.Errorf("Divide(%f,%f): want %f,got %f", tc.a, tc.b, tc.want, got)
 		}
 	}
