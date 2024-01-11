@@ -103,7 +103,7 @@ func TestDivideInvalid(t *testing.T) {
 	t.Parallel()
 	_, err := calculator.Divide(2, 0)
 	if err == nil {
-		t.Errorf("we want nil for invalid input")
+		t.Errorf("we want error for invalid input got nil")
 	}
 }
 
