@@ -103,7 +103,7 @@ func TestDivideInvalid(t *testing.T) {
 	t.Parallel()
 	_, err := calculator.Divide(2, 0)
 	if err == nil {
-		t.Errorf("we want error for invalid input got nil")
+		t.Error("we want error for invalid input got nil")
 	}
 }
 
@@ -135,6 +135,6 @@ func TestSqrtInvalid(t *testing.T) {
 	t.Parallel()
 	_, err := calculator.Sqrt(-5)
 	if err == nil {
-		t.Errorf("we want error for invalid input got nil")
+		t.Error("we want error for invalid input got nil")
 	}
 }
