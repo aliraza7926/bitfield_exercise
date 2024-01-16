@@ -73,12 +73,12 @@ func TestGetAllBooks(t *testing.T) {
 
 func TestGetBook(t *testing.T) {
 	t.Parallel()
-	catalog := map[int]bookstore.Book{
+	catalog := bookstore.Catalog{
 		1: {ID: 1, Title: "For the Love of Go"},
 		2: {ID: 2, Title: "The Power of Go: Tools"},
 	}
 	want := bookstore.Book{Title: "The Power of Go: Tools", ID: 2}
-	got, err := bookstore.GetBook(catalog, 2)
+	got, err := catalog.GetBook(2)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -90,8 +90,8 @@ func TestGetBook(t *testing.T) {
 
 func TestGetBookBadIDReturnsError(t *testing.T) {
 	t.Parallel()
-	catalog := map[int]bookstore.Book{}
-	_, err := bookstore.GetBook(catalog, 999)
+	catalog := bookstore.Catalog{}
+	_, err := catalog.GetBook(999)
 	if err == nil {
 		t.Fatal("want error for non-existent ID, got nil")
 	}
