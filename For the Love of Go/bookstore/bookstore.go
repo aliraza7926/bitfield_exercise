@@ -15,6 +15,9 @@ type Book struct {
 	DiscountPercent int
 }
 
+// Catalog is a map represents information about all book
+type Catalog map[int]Book
+
 func Buy(b Book) (Book, error) {
 	if b.Copies == 0 {
 		return Book{}, errors.New("no copies left")
@@ -23,9 +26,9 @@ func Buy(b Book) (Book, error) {
 	return b, nil
 }
 
-func GetAllBooks(catalog map[int]Book) []Book {
+func (c Catalog) GetAllBooks() []Book {
 	var result = []Book{}
-	for _, book := range catalog {
+	for _, book := range c {
 		result = append(result, book)
 	}
 	return result
