@@ -47,3 +47,8 @@ func (b Book) NetPriceCents() int {
 	return b.PriceCents - saving
 
 }
+
+func (b *Book) SetPriceCents(price int) error {
+	b.PriceCents = price
+	return nil
+}
