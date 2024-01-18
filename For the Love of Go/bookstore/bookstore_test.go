@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
 func TestBook(t *testing.T) {
@@ -65,7 +66,7 @@ func TestGetAllBooks(t *testing.T) {
 	sort.Slice(got, func(i, j int) bool {
 		return got[i].ID < got[j].ID
 	})
-	if !cmp.Equal(want, got) {
+	if !cmp.Equal(want, got, cmpopts.IgnoreUnexported(bookstore.Book{})) {
 		t.Error(cmp.Diff(want, got))
 	}
 }
@@ -82,7 +83,7 @@ func TestGetBook(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if !cmp.Equal(want, got) {
+	if !cmp.Equal(want, got, cmpopts.IgnoreUnexported(bookstore.Book{})) {
 		t.Error(cmp.Diff(want, got))
 	}
 }
