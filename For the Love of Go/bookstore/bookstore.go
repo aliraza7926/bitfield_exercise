@@ -50,7 +50,6 @@ func (b Book) NetPriceCents() int {
 }
 
 func (b *Book) SetPriceCents(price int) error {
-<<<<<<< HEAD
 	if price < 0 {
 		return fmt.Errorf("%d is invalid price becuse it's blow zero", price)
 	}
@@ -69,8 +68,3 @@ func (b *Book) SetCategory(category string) error {
 func (b Book) Category() string {
 	return b.category
 }
-=======
-	b.PriceCents = price
-	return nil
-}
->>>>>>> ab8c7e121039018109ccfe19573540be7761c115
