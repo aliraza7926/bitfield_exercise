@@ -49,6 +49,9 @@ func (b Book) NetPriceCents() int {
 }
 
 func (b *Book) SetPriceCents(price int) error {
+	if price < 0 {
+		return fmt.Errorf("%d is invalid price becuse it's blow zero", price)
+	}
 	b.PriceCents = price
 	return nil
 }
