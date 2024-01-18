@@ -13,6 +13,7 @@ type Book struct {
 	ID              int
 	PriceCents      int
 	DiscountPercent int
+	category        string
 }
 
 // Catalog is a map represents information about all book
@@ -54,4 +55,16 @@ func (b *Book) SetPriceCents(price int) error {
 	}
 	b.PriceCents = price
 	return nil
+}
+
+func (b *Book) SetCategory(category string) error {
+	if category != "Autobiography" {
+		return fmt.Errorf("unknown category %q", category)
+	}
+	b.category = category
+	return nil
+}
+
+func (b Book) Category() string {
+	return b.category
 }
